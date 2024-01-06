@@ -1,6 +1,6 @@
 import java.sql.*;
 import java.util.Scanner;
-public class Login {
+public class Login extends Database {
     String email;
     String username;
     String password;
@@ -8,16 +8,9 @@ public class Login {
     String usernameBenar;
     String passwordBenar;
 
-    String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    String DB_URL = "jdbc:mysql://localhost/minimarket";
-    String user = "root";
-    String pass = "";
-    Connection conn;
-    Statement stmt;
-    ResultSet rs;
-
     Scanner scanner = new Scanner(System.in);
     void showMenu(){
+        connect();
         Integer pilih = 1;
 
         System.out.println("=========Login/Register=========");
@@ -30,9 +23,6 @@ public class Login {
         while (pilih !=0){
         try {
             pilih = Integer.parseInt(scanner.nextLine());
-            Class.forName(JDBC_DRIVER);
-            conn = DriverManager.getConnection(DB_URL, user, pass);
-            stmt = conn.createStatement();
 
             switch (pilih){
                 case 0:
@@ -51,12 +41,6 @@ public class Login {
             } catch (NumberFormatException e){
                 System.out.println("Silahkan Masukkan Angka!");
                 System.out.print("Pilih = ");
-
-            } catch (SQLException e){
-                e.printStackTrace();
-
-            } catch (ClassNotFoundException e){
-                e.printStackTrace();
             } break;
         }
     }
