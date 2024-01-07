@@ -1,5 +1,7 @@
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.Scanner;
+import java.util.Date;
 public class Login extends Database {
     String email;
     String username;
@@ -8,6 +10,9 @@ public class Login extends Database {
     String usernameBenar;
     String passwordBenar;
 
+    Date date = new Date();
+    SimpleDateFormat tanggal = new SimpleDateFormat("E dd/mm/yyyy");
+    SimpleDateFormat jam = new SimpleDateFormat("hh:mm:ss");
     Scanner scanner = new Scanner(System.in);
     void showMenu(){
         connect();
@@ -92,6 +97,8 @@ public class Login extends Database {
             passwordBenar = scanner.nextLine();
 
             if (emailBenar.equals(String.format("%s", email)) && passwordBenar.equals(String.format("%s", password))){
+            System.out.println("====================");
+            System.out.println(tanggal.format(date) + " " + jam.format(date));
             System.out.println("Selamat Datang " + String.format("%s", username) + "!");
             break;
             } else{
