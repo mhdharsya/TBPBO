@@ -15,7 +15,6 @@ public class ManageBarang extends Database implements Method {
     }
 
     void tampilMenu(){
-        connect();
         Integer pilih = 1;
 
         System.out.println("=========SISTEM INVENTARIS BARANG=========");
@@ -29,8 +28,9 @@ public class ManageBarang extends Database implements Method {
         System.out.println("");
         System.out.print("Pilih = ");
 
-        while (pilih !=0){
-            try{  
+        while (pilih !=0){ 
+            connect();
+            try{ 
                 pilih = Integer.parseInt(scanner.nextLine());
             switch (pilih){
                 case 0:
@@ -56,12 +56,14 @@ public class ManageBarang extends Database implements Method {
                     break;
                 default:
                     System.out.println("Pilihan Salah!");
-                    System.out.println("Pilih = ");
+                    System.out.print("Pilih = ");
+                    break;
             }
             } catch (NumberFormatException e){
                 System.out.println("Silahkan Masukkan Angka!");
-                System.out.println("Pilih = ");
-            } break;
+                System.out.print("Pilih = ");
+                // break;
+            } 
         }
     }
 
@@ -253,6 +255,7 @@ public class ManageBarang extends Database implements Method {
         } catch (Exception e){
             e.printStackTrace();
         }
+        tampilMenu();
     }
 
     public void hapusBarang() {
